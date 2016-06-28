@@ -10,20 +10,23 @@ namespace Baseball
     {
         static void Main(string[] args)
         {
-            Population myPop = new Population(50, true);
+            Statistics stats = new Statistics();
+            FitnessCalc fitnesscalc = new FitnessCalc(stats);
+            Population myPop = new Population(50, true, fitnesscalc);
+            Algorithm algorithm = new Algorithm(fitnesscalc);
 
             var  generationCount = 0;
             while (myPop.GetFittest().GetFitness() < FitnessCalc.GetMaxFitness())
             {
                 generationCount++;
-                Console.WriteLine("Generation: " + generationCount + " Fittest: " + myPop.GetFittest().GetFitness());
-                myPop = Algorithm.EvolvePopulation(myPop);
+                System.Diagnostics.Debug.WriteLine("Generation: " + generationCount + " Fittest: " + myPop.GetFittest().GetFitness());
+                myPop = algorithm.EvolvePopulation(myPop);
             }
 
-            Console.WriteLine("Solution found!");
-            Console.WriteLine("Generation: " + generationCount);
-            Console.WriteLine("Genes:");
-            Console.WriteLine(myPop.GetFittest());
+            System.Diagnostics.Debug.WriteLine("Solution found!");
+            System.Diagnostics.Debug.WriteLine("Generation: " + generationCount);
+            System.Diagnostics.Debug.WriteLine("Genes:");
+            System.Diagnostics.Debug.WriteLine(myPop.GetFittest());
         }
     }
 }

@@ -16,6 +16,10 @@ namespace DataCleaner
 
             foreach (var file in files)
             {
+                if (file.Contains("Clean"))
+                {
+                    continue;
+                }
                 var csv = new StringBuilder();
                 foreach (var name in teamNames)
                 {
@@ -35,6 +39,33 @@ namespace DataCleaner
                     }
 
                     reader.Close();
+                    reader = new StreamReader(File.OpenRead(file));
+
+                    var OddStats = new List<String[]>();
+                    while(!reader.EndOfStream)
+                    {
+                        var line = reader.ReadLine();
+                        var values = line.Split(',');
+                        if(values[4].Contains("Relievers"))
+                        {
+                            for(var i = 0; i < 30; i++)
+                            {
+                                line = reader.ReadLine();
+                                OddStats.Add(line.Split(','));
+                            }
+                        }
+                    }
+
+                    for (var j = 0; j < OddStats.ElementAt(0).Length; j++)
+                    {
+                        for (var i = 0; i < OddStats.Count; i++)
+                        {   
+                            if (OddStats.ElementAt(i)[j].Contains(name))
+                            {
+                                list.Add(OddStats.ElementAt(i)[j].Substring(3));
+                            }                      
+                        }
+                    }
 
                     csv.AppendLine(String.Join(",", list));
                 }

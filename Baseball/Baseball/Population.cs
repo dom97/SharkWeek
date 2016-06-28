@@ -10,7 +10,7 @@ namespace Baseball
     {
         Individual[] population;
 
-        public Population(Int32 populationSize, Boolean initialize)
+        public Population(Int32 populationSize, Boolean initialize, FitnessCalc fitnessCalc)
         {
             population = new Individual[populationSize];
 
@@ -18,7 +18,7 @@ namespace Baseball
             {
                 for (var i = 0; i < Size(); i++)
                 {
-                    Individual newIndividual = new Individual();
+                    Individual newIndividual = new Individual(fitnessCalc);
                     newIndividual.GenerateIndividual();
                     SaveIndividual(i, newIndividual);
                 }                

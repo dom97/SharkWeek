@@ -9,13 +9,18 @@ namespace Baseball
     class Algorithm
     {
         private static double uniformRate = 0.5;
-        private static double mutationRate = 0.015;
+        private static double mutationRate = 0.4;
         private static int tournamentSize = 5;
         private static Boolean elitism = true;
+        private FitnessCalc fitnessCalc;
 
-        public static Population EvolvePopulation(Population pop)
+        public Algorithm(FitnessCalc fitnessCalc)
         {
-            Population newPopulation = new Population(pop.Size(), false);
+            this.fitnessCalc = fitnessCalc;
+        }
+        public Population EvolvePopulation(Population pop)
+        {
+            Population newPopulation = new Population(pop.Size(), false, fitnessCalc);
 
             if (elitism)
                 newPopulation.SaveIndividual(0, pop.GetFittest());
@@ -26,15 +31,23 @@ namespace Baseball
             else
                 elitismOffset = 0;
 
+            for (var i = elitismOffset; i < pop.Size(); i++)
+            {
+                Individual indiv1 = this.TournamentSelection(pop);
+                Individual indiv2 = this.TournamentSelection(pop);
+                Individual newIndiv = crossover(indiv1, indiv2);
+                newPopulation.SaveIndividual(i, newIndiv);
+            }
+
             for (var i = elitismOffset; i < newPopulation.Size(); i++)
                 Mutate(newPopulation.GetIndividual(i));
 
             return newPopulation;
         }
 
-        private static Individual crossover(Individual indiv1, Individual indiv2)
+        private Individual crossover(Individual indiv1, Individual indiv2)
         {
-            Individual newSol = new Individual();
+            Individual newSol = new Individual(fitnessCalc);
             // Loop through genes
             for (int i = 0; i < indiv1.Size(); i++)
             {
@@ -52,7 +65,7 @@ namespace Baseball
             return newSol;
         }
 
-        private static void Mutate(Individual indiv)
+        private void Mutate(Individual indiv)
         {
             Random random = new Random();
 
@@ -67,11 +80,11 @@ namespace Baseball
             }
         }
 
-        private static Individual TournamentSelection(Population pop)
+        private Individual TournamentSelection(Population pop)
         {
             Random random = new Random();
             // Create a tournament population
-            Population tournament = new Population(tournamentSize, false);
+            Population tournament = new Population(tournamentSize, false, fitnessCalc);
             // For each place in the tournament get a random individual
             for (int i = 0; i < tournamentSize; i++)
             {

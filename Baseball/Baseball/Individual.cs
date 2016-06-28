@@ -8,10 +8,16 @@ namespace Baseball
 {
     public class Individual
     {
-        static Int32 defaultGeneLength = 64;
+        static Int32 defaultGeneLength = 96;
         private Byte[] genes { get; set; } = new Byte[defaultGeneLength];
 
         private Int32 fitness = 0;
+        private FitnessCalc fitnessCalc;
+        public Individual(FitnessCalc fitnessCalc)
+        {
+            this.fitnessCalc = fitnessCalc;
+        }
+
 
         public void GenerateIndividual()
         {
@@ -22,7 +28,7 @@ namespace Baseball
         public Int32 GetFitness()
         {
             if (fitness == 0)
-                fitness = FitnessCalc.getFitness(this);
+                fitness = fitnessCalc.getFitness(this);
             return fitness;
         }
 
@@ -40,6 +46,11 @@ namespace Baseball
         public byte GetGene(int index)
         {
             return genes[index];
+        }
+
+        public byte[] GetGenes()
+        {
+            return genes;
         }
     }
 }
