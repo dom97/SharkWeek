@@ -89,6 +89,48 @@ namespace Baseball
         {
             var dateIndex = 0;
             var statsFile = new StreamReader(File.OpenRead(@"C:\Dev\SharkWeek\Baseball\TeamStats\MLBJune30Clean.csv"));
+            ReadStatsForSpecificDate(dateIndex, statsFile);
+            dateIndex++;
+
+            statsFile = new StreamReader(File.OpenRead(@"C:\Dev\SharkWeek\Baseball\TeamStats\MLBAugust9Clean.csv"));
+            ReadStatsForSpecificDate(dateIndex, statsFile);
+            dateIndex++;
+
+            statsFile = new StreamReader(File.OpenRead(@"C:\Dev\SharkWeek\Baseball\TeamStats\MLBAugust21Clean.csv"));
+            ReadStatsForSpecificDate(dateIndex, statsFile);
+            dateIndex++;
+
+            statsFile = new StreamReader(File.OpenRead(@"C:\Dev\SharkWeek\Baseball\TeamStats\MLBAugust28Clean.csv"));
+            ReadStatsForSpecificDate(dateIndex, statsFile);
+            dateIndex++;
+
+            statsFile = new StreamReader(File.OpenRead(@"C:\Dev\SharkWeek\Baseball\TeamStats\MLBSeptember4Clean.csv"));
+            ReadStatsForSpecificDate(dateIndex, statsFile);
+            dateIndex++;
+
+            statsFile = new StreamReader(File.OpenRead(@"C:\Dev\SharkWeek\Baseball\TeamStats\MLBSeptember6Clean.csv"));
+            ReadStatsForSpecificDate(dateIndex, statsFile);
+            dateIndex++;
+
+            statsFile = new StreamReader(File.OpenRead(@"C:\Dev\SharkWeek\Baseball\TeamStats\MLBSeptember13Clean.csv"));
+            ReadStatsForSpecificDate(dateIndex, statsFile);
+            dateIndex++;
+
+            statsFile = new StreamReader(File.OpenRead(@"C:\Dev\SharkWeek\Baseball\TeamStats\MLBSeptember21Clean.csv"));
+            ReadStatsForSpecificDate(dateIndex, statsFile);
+            dateIndex++;
+
+            statsFile = new StreamReader(File.OpenRead(@"C:\Dev\SharkWeek\Baseball\TeamStats\MLBSeptember29Clean.csv"));
+            ReadStatsForSpecificDate(dateIndex, statsFile);
+            dateIndex++;
+
+            statsFile = new StreamReader(File.OpenRead(@"C:\Dev\SharkWeek\Baseball\TeamStats\MLBOctober7Clean.csv"));
+            ReadStatsForSpecificDate(dateIndex, statsFile);
+            dateIndex++;
+        }
+
+        private void ReadStatsForSpecificDate(int dateIndex, StreamReader statsFile)
+        {
             var index = 0;
             while (!statsFile.EndOfStream)
             {
@@ -100,134 +142,6 @@ namespace Baseball
                 index++;
             }
             statsFile.Close();
-            dateIndex++;
-
-            statsFile = new StreamReader(File.OpenRead(@"C:\Dev\SharkWeek\Baseball\TeamStats\MLBAugust9Clean.csv"));
-            index = 0;
-            while (!statsFile.EndOfStream)
-            {
-                var value = statsFile.ReadLine().Split(',');
-                for (var i = 0; i < value.Length; i++)
-                {
-                    TeamStats[dateIndex][index][i] = Convert.ToDouble(value[i]);
-                }
-                index++;
-            }
-            statsFile.Close();
-            dateIndex++;
-
-            statsFile = new StreamReader(File.OpenRead(@"C:\Dev\SharkWeek\Baseball\TeamStats\MLBAugust21Clean.csv"));
-            index = 0;
-            while (!statsFile.EndOfStream)
-            {
-                var value = statsFile.ReadLine().Split(',');
-                for (var i = 0; i < value.Length; i++)
-                {
-                    TeamStats[dateIndex][index][i] = Convert.ToDouble(value[i]);
-                }
-                index++;
-            }
-            statsFile.Close();
-            dateIndex++;
-
-            statsFile = new StreamReader(File.OpenRead(@"C:\Dev\SharkWeek\Baseball\TeamStats\MLBAugust28Clean.csv"));
-            index = 0;
-            while (!statsFile.EndOfStream)
-            {
-                var value = statsFile.ReadLine().Split(',');
-                for (var i = 0; i < value.Length; i++)
-                {
-                    TeamStats[dateIndex][index][i] = Convert.ToDouble(value[i]);
-                }
-                index++;
-            }
-            statsFile.Close();
-            dateIndex++;
-
-            statsFile = new StreamReader(File.OpenRead(@"C:\Dev\SharkWeek\Baseball\TeamStats\MLBSeptember4Clean.csv"));
-            index = 0;
-            while (!statsFile.EndOfStream)
-            {
-                var value = statsFile.ReadLine().Split(',');
-                for (var i = 0; i < value.Length; i++)
-                {
-                    TeamStats[dateIndex][index][i] = Convert.ToDouble(value[i]);
-                }
-                index++;
-            }
-            statsFile.Close();
-            dateIndex++;
-
-            statsFile = new StreamReader(File.OpenRead(@"C:\Dev\SharkWeek\Baseball\TeamStats\MLBSeptember6Clean.csv"));
-            index = 0;
-            while (!statsFile.EndOfStream)
-            {
-                var value = statsFile.ReadLine().Split(',');
-                for (var i = 0; i < value.Length; i++)
-                {
-                    TeamStats[dateIndex][index][i] = Convert.ToDouble(value[i]);
-                }
-                index++;
-            }
-            statsFile.Close();
-            dateIndex++;
-
-            statsFile = new StreamReader(File.OpenRead(@"C:\Dev\SharkWeek\Baseball\TeamStats\MLBSeptember13Clean.csv"));
-            index = 0;
-            while (!statsFile.EndOfStream)
-            {
-                var value = statsFile.ReadLine().Split(',');
-                for (var i = 0; i < value.Length; i++)
-                {
-                    TeamStats[dateIndex][index][i] = Convert.ToDouble(value[i]);
-                }
-                index++;
-            }
-            statsFile.Close();
-            dateIndex++;
-
-            statsFile = new StreamReader(File.OpenRead(@"C:\Dev\SharkWeek\Baseball\TeamStats\MLBSeptember21Clean.csv"));
-            index = 0;
-            while (!statsFile.EndOfStream)
-            {
-                var value = statsFile.ReadLine().Split(',');
-                for (var i = 0; i < value.Length; i++)
-                {
-                    TeamStats[dateIndex][index][i] = Convert.ToDouble(value[i]);
-                }
-                index++;
-            }
-            statsFile.Close();
-            dateIndex++;
-
-            statsFile = new StreamReader(File.OpenRead(@"C:\Dev\SharkWeek\Baseball\TeamStats\MLBSeptember29Clean.csv"));
-            index = 0;
-            while (!statsFile.EndOfStream)
-            {
-                var value = statsFile.ReadLine().Split(',');
-                for (var i = 0; i < value.Length; i++)
-                {
-                    TeamStats[dateIndex][index][i] = Convert.ToDouble(value[i]);
-                }
-                index++;
-            }
-            statsFile.Close();
-            dateIndex++;
-
-            statsFile = new StreamReader(File.OpenRead(@"C:\Dev\SharkWeek\Baseball\TeamStats\MLBOctober7Clean.csv"));
-            index = 0;
-            while (!statsFile.EndOfStream)
-            {
-                var value = statsFile.ReadLine().Split(',');
-                for (var i = 0; i < value.Length; i++)
-                {
-                    TeamStats[dateIndex][index][i] = Convert.ToDouble(value[i]);
-                }
-                index++;
-            }
-            statsFile.Close();
-            dateIndex++;
         }
-
     }
 }

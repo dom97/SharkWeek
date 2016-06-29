@@ -19,7 +19,7 @@ namespace Baseball
             while (myPop.GetFittest().GetFitness() < FitnessCalc.GetMaxFitness())
             {
                 generationCount++;
-                System.Diagnostics.Debug.WriteLine("Generation: " + generationCount + " Fittest: " + myPop.GetFittest().GetFitness());
+                System.Diagnostics.Debug.WriteLine("Generation: " + generationCount + " Fittest: " + myPop.GetFittest().GetFitness());  
                 myPop = algorithm.EvolvePopulation(myPop);
             }
 

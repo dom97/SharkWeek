@@ -25,122 +25,52 @@ namespace Baseball
                     if (game < 78)
                     {
                         var dateIndex = 0;
-                        var teamScore = CalculateTeamScore(statistics.TeamStats[dateIndex][team], individual);
-
-                        var oppNumber = statistics.TeamNumbers[statistics.TeamOpponents[team, game]];
-                        var oppScore = CalculateTeamScore(statistics.TeamStats[dateIndex][oppNumber], individual);
-                        var diff = teamScore - oppScore;
-                        var win = statistics.TeamRecord[team, game];
-                        if ((win && diff > 0) || (!win && diff <= 0))
-                            fitness++;
+                        fitness = CalculateWin(individual, fitness, team, game, dateIndex);
                     }
                     else if (game < 112)
                     {
                         var dateIndex = 1;
-                        var teamScore = CalculateTeamScore(statistics.TeamStats[dateIndex][team], individual);                        
-
-                        var oppNumber = statistics.TeamNumbers[statistics.TeamOpponents[team, game]];
-                        var oppScore = CalculateTeamScore(statistics.TeamStats[dateIndex][oppNumber], individual);
-                        var diff = teamScore - oppScore;
-                        var win = statistics.TeamRecord[team, game];
-                        if ((win && diff > 0) || (!win && diff <= 0))
-                            fitness++;
+                        fitness = CalculateWin(individual, fitness, team, game, dateIndex);
                     }
                     else if (game < 122)
                     {
                         var dateIndex = 2;
-                        var teamScore = CalculateTeamScore(statistics.TeamStats[dateIndex][team], individual);
-                        
-                        var oppNumber = statistics.TeamNumbers[statistics.TeamOpponents[team, game]];
-                        var oppScore = CalculateTeamScore(statistics.TeamStats[dateIndex][oppNumber], individual);
-                        var diff = teamScore - oppScore;
-                        var win = statistics.TeamRecord[team, game];
-                        if ((win && diff > 0) || (!win && diff <= 0))
-                            fitness++;
+                        fitness = CalculateWin(individual, fitness, team, game, dateIndex);
                     }
                     else if (game < 129)
                     {
                         var dateIndex = 3;
-                        var teamScore = CalculateTeamScore(statistics.TeamStats[dateIndex][team], individual);
-                        
-                        var oppNumber = statistics.TeamNumbers[statistics.TeamOpponents[team, game]];
-                        var oppScore = CalculateTeamScore(statistics.TeamStats[dateIndex][oppNumber], individual);
-                        var diff = teamScore - oppScore;
-                        var win = statistics.TeamRecord[team, game];
-                        if ((win && diff > 0) || (!win && diff <= 0))
-                            fitness++;
+                        fitness = CalculateWin(individual, fitness, team, game, dateIndex);
                     }
                     else if (game < 135)
                     {
                         var dateIndex = 4;
-                        var teamScore = CalculateTeamScore(statistics.TeamStats[dateIndex][team], individual);
-                        
-                        var oppNumber = statistics.TeamNumbers[statistics.TeamOpponents[team, game]];
-                        var oppScore = CalculateTeamScore(statistics.TeamStats[dateIndex][oppNumber], individual);
-                        var diff = teamScore - oppScore;
-                        var win = statistics.TeamRecord[team, game];
-                        if ((win && diff > 0) || (!win && diff <= 0))
-                            fitness++;
+                        fitness = CalculateWin(individual, fitness, team, game, dateIndex);
                     }
                     else if (game < 137)
                     {
                         var dateIndex = 5;
-                        var teamScore = CalculateTeamScore(statistics.TeamStats[dateIndex][team], individual);
-                        
-                        var oppNumber = statistics.TeamNumbers[statistics.TeamOpponents[team, game]];
-                        var oppScore = CalculateTeamScore(statistics.TeamStats[dateIndex][oppNumber], individual);
-                        var diff = teamScore - oppScore;
-                        var win = statistics.TeamRecord[team, game];
-                        if ((win && diff > 0) || (!win && diff <= 0))
-                            fitness++;
+                        fitness = CalculateWin(individual, fitness, team, game, dateIndex);
                     }
                     else if (game < 143)
                     {
                         var dateIndex = 6;
-                        var teamScore = CalculateTeamScore(statistics.TeamStats[dateIndex][team], individual);
-                        
-                        var oppNumber = statistics.TeamNumbers[statistics.TeamOpponents[team, game]];
-                        var oppScore = CalculateTeamScore(statistics.TeamStats[dateIndex][oppNumber], individual);
-                        var diff = teamScore - oppScore;
-                        var win = statistics.TeamRecord[team, game];
-                        if ((win && diff > 0) || (!win && diff <= 0))
-                            fitness++;
+                        fitness = CalculateWin(individual, fitness, team, game, dateIndex);
                     }
                     else if (game < 151)
                     {
                         var dateIndex = 7;
-                        var teamScore = CalculateTeamScore(statistics.TeamStats[dateIndex][team], individual);
-                        
-                        var oppNumber = statistics.TeamNumbers[statistics.TeamOpponents[team, game]];
-                        var oppScore = CalculateTeamScore(statistics.TeamStats[dateIndex][oppNumber], individual);
-                        var diff = teamScore - oppScore;
-                        var win = statistics.TeamRecord[team, game];
-                        if ((win && diff > 0) || (!win && diff <= 0))
-                            fitness++;
+                        fitness = CalculateWin(individual, fitness, team, game, dateIndex);
                     }
                     else if (game < 157)
                     {
                         var dateIndex = 8;
-                        var teamScore = CalculateTeamScore(statistics.TeamStats[dateIndex][team], individual);
-                        
-                        var oppNumber = statistics.TeamNumbers[statistics.TeamOpponents[team, game]];
-                        var oppScore = CalculateTeamScore(statistics.TeamStats[dateIndex][oppNumber], individual);
-                        var diff = teamScore - oppScore;
-                        var win = statistics.TeamRecord[team, game];
-                        if ((win && diff > 0) || (!win && diff <= 0))
-                            fitness++;
+                        fitness = CalculateWin(individual, fitness, team, game, dateIndex);
                     }
                     else if (game < 160)
                     {
                         var dateIndex = 9;
-                        var teamScore = CalculateTeamScore(statistics.TeamStats[dateIndex][team], individual);
-                        
-                        var oppNumber = statistics.TeamNumbers[statistics.TeamOpponents[team, game]];
-                        var oppScore = CalculateTeamScore(statistics.TeamStats[dateIndex][oppNumber], individual);
-                        var diff = teamScore - oppScore;
-                        var win = statistics.TeamRecord[team, game];
-                        if ((win && diff > 0) || (!win && diff <= 0))
-                            fitness++;
+                        fitness = CalculateWin(individual, fitness, team, game, dateIndex);
                     }
 
 
@@ -150,6 +80,19 @@ namespace Baseball
 
 
 
+            return fitness;
+        }
+
+        private Int32 CalculateWin(Individual individual, int fitness, int team, int game, int dateIndex)
+        {
+            var teamScore = CalculateTeamScore(statistics.TeamStats[dateIndex][team], individual);
+
+            var oppNumber = statistics.TeamNumbers[statistics.TeamOpponents[team, game]];
+            var oppScore = CalculateTeamScore(statistics.TeamStats[dateIndex][oppNumber], individual);
+            var diff = teamScore - oppScore;
+            var win = statistics.TeamRecord[team, game];
+            if ((win && diff > 0) || (!win && diff <= 0))
+               fitness++;
             return fitness;
         }
 
